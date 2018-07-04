@@ -88,6 +88,9 @@
 ;; diredを二つ開いているときにsrcとdstに
 (defvar dired-dwim-target t)
 
+;; バックスペースキーをC-hに割り当て
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+
 ;;===========
 ;; プログラム
 ;;===========
