@@ -102,11 +102,10 @@
 (require 'flycheck)
 (global-flycheck-mode)
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
-
 (define-key global-map (kbd "C-c n") 'flycheck-next-error)
 (define-key global-map (kbd "C-c p") 'flycheck-previous-error)
 (define-key global-map (kbd "C-c d") 'flycheck-list-errors)
-
+;; 日本語環境でのみ定義
 (defmacro flycheck-define-clike-checker (name command modes)
   `(flycheck-define-checker ,(intern (format "%s" name))
      ,(format "A %s checker using %s" name (car command))
