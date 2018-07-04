@@ -6,7 +6,7 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
- (setq custom-file "./custom_setttings.el")
+ (setq custom-file "~/.emacs.d/custom_setttings.el")
  
  ;; カスタマイズ用ファイルをロード
  (load custom-file t)
