@@ -76,10 +76,10 @@
 
 ;;ウィンドウ移動
 ;; C-x o の補助
-(global-set-key (kbd "C-c C-b") 'windmove-left)
-(global-set-key (kbd "C-c C-f") 'windmove-right)
-(global-set-key (kbd "C-c C-p") 'windmove-up)
-(global-set-key (kbd "C-c C-n") 'windmove-down)
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
 
 ;; diredでrでエディタブルに
 (add-hook 'dired-load-hook (lambda ()
