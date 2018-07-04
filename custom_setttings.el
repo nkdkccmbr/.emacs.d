@@ -125,14 +125,6 @@
 (add-to-list 'flycheck-checkers 'c++-g++-ja)
 
 ;;===========
-;; Python
-;;===========
-;; Python-mode
-;; M-x package-list-packages python-mode
-(require 'python-mode)
-(setq auto-mode-alist (cons '("\\.py\\'" . python-mode) auto-mode-alist))
-
-;;===========
 ;; 自作関数
 ;;===========
 ;; 日付挿入 C-cd
