@@ -2,6 +2,7 @@
 ;; 基本
 ;;===========
 ;; パッケージ
+;; 初回はM-x package-refresh-contents  
 (setq package-user-dir "~/.emacs.d/elisp/elpa/")
 (package-initialize)
 (setq package-archives
