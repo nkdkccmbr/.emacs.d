@@ -94,6 +94,9 @@
 ;;===========
 ;; プログラム
 ;;===========
+;; 各モードの拡張子を指定する
+(add-to-list 'auto-mode-alist '("\\.pyx\\'". python-mode))
+
 ;; M-x compile を F7に設定
 (global-set-key [f7] 'compile)
 
