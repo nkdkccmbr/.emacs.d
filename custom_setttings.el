@@ -91,6 +91,9 @@
 ;;===========
 ;; プログラム
 ;;===========
+;; M-x compile を F7に設定
+(global-set-key [f7] 'compile)
+
 ;; Auto complete
 ;; M-x package-install auto-complete
 (require 'auto-complete-config)
