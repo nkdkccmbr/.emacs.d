@@ -3,11 +3,11 @@
 ;;===========
 ;; パッケージ
 (setq package-user-dir "~/.emacs.d/elisp/elpa/")
-(defvar package-archives
+(package-initialize)
+(setq package-archives
       '(("gnu"   . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.org/packages/")
         ("org"   . "http://orgmode.org/elpa/")))
-(package-initialize)
 
 ;; 環境を日本語、UTF-8にする
 (set-locale-environment nil)
