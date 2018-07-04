@@ -75,10 +75,10 @@
 
 ;;ウィンドウ移動
 ;; C-x o の補助
-(global-set-key (kbd "C-c b") 'windmove-left)
-(global-set-key (kbd "C-c f") 'windmove-right)
-(global-set-key (kbd "C-c p") 'windmove-up)
-(global-set-key (kbd "C-c n") 'windmove-down)
+(global-set-key (kbd "C-c C-b") 'windmove-left)
+(global-set-key (kbd "C-c C-f") 'windmove-right)
+(global-set-key (kbd "C-c C-p") 'windmove-up)
+(global-set-key (kbd "C-c C-n") 'windmove-down)
 
 ;; diredでrでエディタブルに
 (add-hook 'dired-load-hook (lambda ()
@@ -101,9 +101,11 @@
 (require 'flycheck)
 (global-flycheck-mode)
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
-(define-key global-map (kbd "\C-cn") 'flycheck-next-error)
-(define-key global-map (kbd "\C-cp") 'flycheck-previous-error)
-(define-key global-map (kbd "\C-cd") 'flycheck-list-errors)
+
+(define-key global-map (kbd "C-c n") 'flycheck-next-error)
+(define-key global-map (kbd "C-c p") 'flycheck-previous-error)
+(define-key global-map (kbd "C-c d") 'flycheck-list-errors)
+
 (defmacro flycheck-define-clike-checker (name command modes)
   `(flycheck-define-checker ,(intern (format "%s" name))
      ,(format "A %s checker using %s" name (car command))
