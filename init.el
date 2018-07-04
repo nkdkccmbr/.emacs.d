@@ -6,7 +6,7 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
- (setq custom-file "/cygdrive/c/Users/admin/Dropbox/000config/.emacs.d/custom_setttings.el")
+ (setq custom-file "./custom_setttings.el")
  
  ;; カスタマイズ用ファイルをロード
  (load custom-file t)
