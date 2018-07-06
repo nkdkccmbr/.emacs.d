@@ -2,7 +2,7 @@
 ;; 基本
 ;;===========
 ;; パッケージ
-;; 初回はM-x package-refresh-contents  
+;; 初回はM-x package-refresh-contents
 (setq package-user-dir "~/.emacs.d/elisp/elpa/")
 (package-initialize)
 (setq package-archives
@@ -91,10 +91,38 @@
 ;; バックスペースキーをC-hに割り当て
 (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 
+;; ========
+;; org-mode
+;; ========
+;; http://emacs.rubikitch.com/sd1502-org-mode/
+;; (global-set-key (kbd "C-c c") 'org-capture)
+;; (global-set-key (kbd "C-c a") 'org-agenda)
+;; ;; org-captureで2種類のメモを扱うようにする
+;; (setq org-capture-templates
+;;       '(("t" "New TODO" entry
+;;          (file+headline "~/dropbox/org/todo.org" "予定")
+;;          "* TODO %?\n\n")
+;;         ("m" "Memo" entry
+;;          (file+headline "~/dropbox/org/memo.org" "メモ")
+;;          "* %U%?\n%i\n%a")))
+;; ;; org-agendaでaを押したら予定表とTODOリストを表示
+;; (setq org-agenda-custom-commands
+;;       '(("a" "Agenda and TODO"
+;;          ((agenda "")
+;;           (alltodo "")))))
+;; ;; org-agendaで扱うファイルは複数可だが、
+;; ;; TODO・予定用のファイルのみ指定
+;; (setq org-agenda-files '("~/dropbox/org/todo.org"))
+;; ;; TODOリストに日付つきTODOを表示しない
+;; (setq org-agenda-todo-ignore-with-date t)
+;; ;; 今日から予定を表示させる
+;; (setq org-agenda-start-on-weekday nil)
+
 ;;===========
 ;; プログラム
 ;;===========
 ;; 各モードの拡張子を指定する
+(add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.pyx\\'". python-mode))
 
 ;; M-x compile を F7に設定
@@ -111,10 +139,11 @@
 (require 'flycheck)
 (global-flycheck-mode)
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
+
 (define-key global-map (kbd "C-c n") 'flycheck-next-error)
 (define-key global-map (kbd "C-c p") 'flycheck-previous-error)
 (define-key global-map (kbd "C-c d") 'flycheck-list-errors)
-;; 日本語環境でのみ定義
+;; 日本語環境でのみ
 (defmacro flycheck-define-clike-checker (name command modes)
   `(flycheck-define-checker ,(intern (format "%s" name))
      ,(format "A %s checker using %s" name (car command))
@@ -152,9 +181,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (flycheck tabbar sr-speedbar python-mode py-autopep8 nlinum jedi flymake-python-pyflakes exec-path-from-shell))))
+ '(package-selected-packages (quote (flycheck auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
