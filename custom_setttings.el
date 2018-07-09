@@ -64,6 +64,9 @@
     (run-with-idle-timer 0.2 nil #'linum-update-current))
 (setq linum-format "%4d ")
 
+;; C-[の無効化
+(global-unset-key "\C-[")
+
 ;; ssh
 (defvar tramp-default-method "sshx")
 
