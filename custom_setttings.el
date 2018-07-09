@@ -65,7 +65,8 @@
 (setq linum-format "%4d ")
 
 ;; C-[の無効化
-(global-unset-key "\C-[")
+;; M-xまで潰れてしまう．
+;;(global-set-key (kbd "\C-[") nil)    
 
 ;; ssh
 (defvar tramp-default-method "sshx")
