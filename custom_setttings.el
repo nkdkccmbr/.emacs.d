@@ -10,15 +10,15 @@
         ("melpa" . "http://melpa.org/packages/")
         ("org"   . "http://orgmode.org/elpa/")))
 
-;; 環境を日本語、UTF-8にする
+;; UTF-8環境
 (set-locale-environment nil)
-(set-language-environment "Japanese")
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8)
-(defvar default-buffer-file-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8)
+(set-file-name-coding-system 'utf-8)
+(set-default 'buffer-file-coding-system 'utf-8-with-signature)
+(set-keyboard-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-language-environment "Japanese")
 
 ;; テーマ
 (load-theme 'manoj-dark t)
@@ -66,7 +66,7 @@
 
 ;; C-[の無効化
 ;; M-xまで潰れてしまう．
-;;(global-set-key (kbd "\C-[") nil)    
+;; (global-set-key (kbd "\C-[") nil)
 
 ;; ssh
 (defvar tramp-default-method "sshx")
@@ -78,12 +78,12 @@
 (ido-mode 1)
 (ido-everywhere 1)
 
-;;ウィンドウ移動
+;; ウィンドウ移動
 ;; C-x o の補助
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
+;; (global-set-key (kbd "C-c <left>")  'windmove-left)
+;; (global-set-key (kbd "C-c <down>")  'windmove-down)
+;; (global-set-key (kbd "C-c <up>")    'windmove-up)
+;; (global-set-key (kbd "C-c <right>") 'windmove-right)
 
 ;; diredでrでエディタブルに
 (add-hook 'dired-load-hook (lambda ()
@@ -136,6 +136,10 @@
 ;; M-x package-install auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
+(add-to-list 'ac-modes 'text-mode)
+(ac-set-trigger-key "TAB") ;;TABで候補の表示
+(setq ac-use-menu-map t) ;; C-n, C-p 
+(setq ac-use-fuzzy t) ;; 曖昧
 
 ;; flycheck
 ;; M-x package-install flycheck
@@ -164,6 +168,8 @@
                    ("g++" "-fsyntax-only" "-Wall" "-Wextra" "-std=c++11")
                    c++-mode)
 (add-to-list 'flycheck-checkers 'c++-g++-ja)
+
+
 
 ;;===========
 ;; 自作関数
