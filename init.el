@@ -1,4 +1,4 @@
- ;; カスタマイズ用のファイルを設定
+;; カスタマイズ用のファイルを設定
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -6,7 +6,7 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
- (setq custom-file "~/.emacs.d/custom_setttings.el")
+(setq custom-file "./custom_settings.el")
  
- ;; カスタマイズ用ファイルをロード
- (load custom-file t)
+;; カスタマイズ用ファイルをロード
+(load custom-file t)
