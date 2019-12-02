@@ -158,7 +158,7 @@
 
 ;; EIN
 ;; M-x package-install ein
-(require 'ein)
+;;(require 'ein)
 
 ;; flycheck
 ;; M-x package-install flycheck
@@ -188,7 +188,11 @@
                    c++-mode)
 (add-to-list 'flycheck-checkers 'c++-g++-ja)
 
-
+;; 文字数制限
+(add-hook 'python-mode-hook
+  (lambda ()
+    (font-lock-add-keywords nil
+      '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
 
 ;;===========
 ;; 自作関数
@@ -210,7 +214,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (flycheck ein auto-complete))))
+ '(package-selected-packages
+   (quote
+    (flymake-python-pyflakes flycheck ein auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
