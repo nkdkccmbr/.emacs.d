@@ -137,6 +137,18 @@
 ;; ;; 今日から予定を表示させる
 ;; (setq org-agenda-start-on-weekday nil)
 
+;; Auto complete
+;; M-x package-install neotree
+(require 'neotree)
+(global-unset-key (kbd "C-M-t"))
+(global-set-key (kbd "C-M-t") 'neotree-toggle)
+(setq neo-show-hidden-files t)
+(setq neo-create-file-auto-open t)
+(setq neo-persist-show t)
+(setq neo-keymap-style 'concise)
+(setq neo-smart-open t)
+
+
 ;;===========
 ;; プログラム
 ;;===========
@@ -216,7 +228,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flymake-python-pyflakes flycheck ein auto-complete))))
+    (neotree dirtree flymake-python-pyflakes flycheck ein auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
