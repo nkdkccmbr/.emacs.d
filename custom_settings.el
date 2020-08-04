@@ -1,4 +1,3 @@
-
 ;;;;;;;;;;;;;;;
 ;; 基本
 ;;;;;;;;;;;;;;
@@ -156,6 +155,36 @@
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.pyx\\'". python-mode))
 
+;; カッコを虹色に
+;; M-x package-install rainbow-delimiters
+;; rainbow-delimiters を使うための設定
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;; 括弧の色を強調する設定
+(require 'cl-lib)
+(require 'color)
+(defun rainbow-delimiters-using-stronger-colors ()
+  (interactive)
+  (cl-loop
+   for index from 1 to rainbow-delimiters-max-face-count
+   do
+   (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+    (cl-callf color-saturate-name (face-foreground face) 30))))
+(add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
+
+;; インデントのガイド
+;; M-x package-install highlight-indent-guides
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(set-face-background 'highlight-indent-guides-odd-face "black")
+(set-face-background 'highlight-indent-guides-even-face "gray8")
+(defun my-highlighter (level responsive display)
+  (if (> 2 level)
+      nil
+    (highlight-indent-guides--highlighter-default level responsive display)))
+
+(setq highlight-indent-guides-highlighter-function 'my-highlighter)
+
 ;; M-x compile を F7に設定
 (global-set-key [f7] 'compile)
 
@@ -170,7 +199,7 @@
 
 ;; EIN
 ;; M-x package-install ein
-;;(require 'ein)
+(require 'ein)
 
 ;; flycheck
 ;; M-x package-install flycheck
@@ -228,7 +257,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (neotree dirtree flymake-python-pyflakes flycheck ein auto-complete))))
+    (highlight-indent-guides rainbow-delimiters ein-mumamo neotree dirtree flymake-python-pyflakes flycheck ein auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
