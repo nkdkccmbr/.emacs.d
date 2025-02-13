@@ -32,7 +32,7 @@
 
 ;; フォント
 (add-to-list 'default-frame-alist
-                       '(font . "Ricty Diminished-16"))
+             '(font . "Ricty Diminished-16"))
 
 ;; スタートアップメッセージを表示させない
 (setq inhibit-startup-message t)
@@ -55,9 +55,6 @@
 ;; メニューバーの非表示
 (menu-bar-mode 0)
 
-;; スクロールバーの非表示
-(scroll-bar-mode 0)
-
 ;; カーソル行をハイライトする
 ;; 現在行をハイライト
 (global-hl-line-mode t)
@@ -75,7 +72,7 @@
 (global-linum-mode 1)
 (setq linum-delay t)
 (defadvice linum-schedule (around my-linum-schedule () activate)
-    (run-with-idle-timer 0.2 nil #'linum-update-current))
+  (run-with-idle-timer 0.2 nil #'linum-update-current))
 (setq linum-format "%4d ")
 
 ;; C-[の無効化
@@ -153,7 +150,7 @@
 ;;===========
 ;; 各モードの拡張子を指定する
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . org-mode))
-(add-to-list 'auto-mode-alist '("\\.pyx\\'". python-mode))
+(add-to-list 'auto-mode-alist '("\\.pyx\\'" . python-mode))
 
 ;; カッコを虹色に
 ;; M-x package-install rainbow-delimiters
@@ -170,19 +167,21 @@
    for index from 1 to rainbow-delimiters-max-face-count
    do
    (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
-    (cl-callf color-saturate-name (face-foreground face) 30))))
+     (cl-callf color-saturate-name (face-foreground face) 30))))
 (add-hook 'emacs-startup-hook 'rainbow-delimiters-using-stronger-colors)
 
 ;; インデントのガイド
 ;; M-x package-install highlight-indent-guides
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-(set-face-background 'highlight-indent-guides-odd-face "black")
-(set-face-background 'highlight-indent-guides-even-face "gray8")
+
+(with-eval-after-load 'highlight-indent-guides
+  (set-face-background 'highlight-indent-guides-odd-face "black")
+  (set-face-background 'highlight-indent-guides-even-face "gray8"))
+
 (defun my-highlighter (level responsive display)
   (if (> 2 level)
       nil
     (highlight-indent-guides--highlighter-default level responsive display)))
-
 (setq highlight-indent-guides-highlighter-function 'my-highlighter)
 
 ;; M-x compile を F7に設定
@@ -238,17 +237,17 @@
 ;;===========
 ;; 自作関数
 ;;===========
-;; 日付挿入 C-cd
+;; 日付挿入 C-c d
 (defun insert-current-time-day()
   (interactive)
   (insert (format-time-string "%Y%m%d" (current-time))))
-(define-key global-map "\C-cd" `insert-current-time-day)
+(define-key global-map (kbd "C-c d") 'insert-current-time-day)
 
-;; 時刻挿入 C-ch
+;; 時刻挿入 C-c h
 (defun insert-current-time-hour()
   (interactive)
   (insert (format-time-string "%H:%M" (current-time))))
-(define-key global-map "\C-ch" `insert-current-time-hour)
+(define-key global-map (kbd "C-c h") 'insert-current-time-hour)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -257,7 +256,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (highlight-indent-guides rainbow-delimiters ein-mumamo neotree dirtree flymake-python-pyflakes flycheck ein auto-complete))))
+    (imenu-list highlight-indent-guides rainbow-delimiters ein-mumamo neotree dirtree flymake-python-pyflakes flycheck ein auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
